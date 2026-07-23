@@ -92,7 +92,8 @@ function WorkspaceSettingsContent() {
     if (token && token !== "offline") headers["Authorization"] = `Bearer ${token}`;
 
     try {
-      const res = await fetch("http://localhost:8000/api/subscription", { headers });
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/api/subscription`, { headers });
       if (res.ok) {
         const data = await res.json();
         setSubInfo(data);
@@ -119,7 +120,8 @@ function WorkspaceSettingsContent() {
     if (token && token !== "offline") headers["Authorization"] = `Bearer ${token}`;
 
     try {
-      const res = await fetch("http://localhost:8000/api/subscription/upgrade", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/api/subscription/upgrade`, {
         method: "POST",
         headers,
         body: JSON.stringify({ plan: planKey }),

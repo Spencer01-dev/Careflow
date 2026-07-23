@@ -72,14 +72,15 @@ export default function HRStaffPage() {
 
     try {
       // 1. Fetch staff users
-      const usersRes = await fetch("http://localhost:8000/api/users", { headers });
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const usersRes = await fetch(`${API_URL}/api/users`, { headers });
       if (usersRes.ok) {
         const data = await usersRes.json();
         setUsers(data);
       }
 
       // 2. Fetch subscription info
-      const subRes = await fetch("http://localhost:8000/api/subscription", { headers });
+      const subRes = await fetch(`${API_URL}/api/subscription`, { headers });
       if (subRes.ok) {
         const subData = await subRes.json();
         setSubInfo(subData);
@@ -117,7 +118,8 @@ export default function HRStaffPage() {
     }
 
     try {
-      const res = await fetch("http://localhost:8000/api/users", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/api/users`, {
         method: "POST",
         headers,
         body: JSON.stringify({
@@ -155,7 +157,8 @@ export default function HRStaffPage() {
     if (token && token !== "offline") headers["Authorization"] = `Bearer ${token}`;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/users/${userId}/status`, {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/api/users/${userId}/status`, {
         method: "PATCH",
         headers,
         body: JSON.stringify({ status: nextStatus }),
@@ -175,7 +178,8 @@ export default function HRStaffPage() {
     if (token && token !== "offline") headers["Authorization"] = `Bearer ${token}`;
 
     try {
-      const res = await fetch(`http://localhost:8000/api/users/${userId}`, {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const res = await fetch(`${API_URL}/api/users/${userId}`, {
         method: "DELETE",
         headers,
       });

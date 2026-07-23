@@ -71,7 +71,8 @@ export default function RegisterPage() {
 
     try {
       // 1. Send registration payload to backend FastAPI
-      const regRes = await fetch("http://localhost:8000/api/auth/register", {
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+      const regRes = await fetch(`${API_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -96,7 +97,7 @@ export default function RegisterPage() {
       formData.append("username", email);
       formData.append("password", password);
 
-      const loginRes = await fetch("http://localhost:8000/api/auth/login", {
+      const loginRes = await fetch(`${API_URL}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: formData.toString(),
