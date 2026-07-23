@@ -52,13 +52,38 @@ function WorkspaceSettingsContent() {
   const [activeTab, setActiveTab] = useState<"subscription" | "general" | "security">("subscription");
   const [msg, setMsg] = useState("");
 
+  // Profile form state
+  const [hospitalName, setHospitalName] = useState("");
+  const [facilityType, setFacilityType] = useState("Private Multi-Specialty Hospital");
+  const [officialEmail, setOfficialEmail] = useState("");
+  const [phone, setPhone] = useState("+254 700 000 000");
+  const [savingProfile, setSavingProfile] = useState(false);
+
   useEffect(() => {
     const tab = searchParams.get("tab");
     if (tab === "general" || tab === "security" || tab === "subscription") {
       setActiveTab(tab);
     }
+    // Load saved profile from localStorage
+    setHospitalName(localStorage.getItem("careflow_hospital_name") || subInfo?.hospital_name || "CareFlow General Hospital");
+    setOfficialEmail(localStorage.getItem("careflow_user_email") || "admin@hospital.com");
+    setFacilityType(localStorage.getItem("careflow_facility_type") || "Private Multi-Specialty Hospital");
+    setPhone(localStorage.getItem("careflow_phone") || "+254 700 000 000");
     fetchSub();
   }, [searchParams]);
+
+  const handleSaveProfile = async () => {
+    setSavingProfile(true);
+    // Save to localStorage so it persists across pages
+    localStorage.setItem("careflow_hospital_name", hospitalName);
+    localStorage.setItem("careflow_facility_type", facilityType);
+    localStorage.setItem("careflow_user_email", officialEmail);
+    localStorage.setItem("careflow_phone", phone);
+    await new Promise((r) => setTimeout(r, 800)); // simulate save
+    setSavingProfile(false);
+    setMsg("Hospital profile updated successfully!");
+    setTimeout(() => setMsg(""), 4000);
+  };
 
   const fetchSub = async () => {
     setLoading(true);
@@ -276,24 +301,50 @@ function WorkspaceSettingsContent() {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase mb-2">Hospital Name</label>
-              <input type="text" defaultValue={subInfo?.hospital_name || "CareFlow General Hospital"} className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500" />
+              <input
+                type="text"
+                value={hospitalName}
+                onChange={(e) => setHospitalName(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase mb-2">Facility Category</label>
-              <input type="text" defaultValue="Private Multi-Specialty Hospital" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500" />
+              <input
+                type="text"
+                value={facilityType}
+                onChange={(e) => setFacilityType(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase mb-2">Primary Official Email</label>
-              <input type="email" defaultValue="admin@hospital.com" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500" />
+              <input
+                type="email"
+                value={officialEmail}
+                onChange={(e) => setOfficialEmail(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              />
             </div>
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase mb-2">Support Helpline Phone</label>
-              <input type="tel" defaultValue="+254 700 000 000" className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500" />
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm font-medium outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100"
+              />
             </div>
           </div>
 
           <div className="pt-4 flex justify-end">
-            <Button className="bg-emerald-600 text-white font-bold px-8">Save Profile Settings</Button>
+            <Button
+              onClick={handleSaveProfile}
+              loading={savingProfile}
+              className="bg-emerald-600 text-white font-bold px-8 border-0"
+            >
+              {savingProfile ? "Saving..." : "Save Profile Settings"}
+            </Button>
           </div>
         </div>
       )}
