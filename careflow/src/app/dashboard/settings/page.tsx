@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { 
   Settings, Building, Shield, Zap, CheckCircle2, 
   Sparkles, Layers, ArrowUpRight, Globe, Lock, CreditCard, RefreshCw
@@ -44,6 +45,7 @@ const PACKAGES = [
 ];
 
 export default function WorkspaceSettingsPage() {
+  const searchParams = useSearchParams();
   const [subInfo, setSubInfo] = useState<SubscriptionInfo | null>(null);
   const [loading, setLoading] = useState(true);
   const [upgrading, setUpgrading] = useState(false);
@@ -51,8 +53,12 @@ export default function WorkspaceSettingsPage() {
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (tab === "general" || tab === "security" || tab === "subscription") {
+      setActiveTab(tab);
+    }
     fetchSub();
-  }, []);
+  }, [searchParams]);
 
   const fetchSub = async () => {
     setLoading(true);
