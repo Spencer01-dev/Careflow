@@ -166,8 +166,8 @@ export default function RegisterPage() {
       {/* Main Content */}
       <main className="flex-1 flex flex-col justify-center items-center p-6 py-12">
         <div className="w-full max-w-2xl bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
-          <form onSubmit={handleSubmit} className="flex flex-col h-full">
-            <div className="p-8 md:p-12">
+          <form onSubmit={handleSubmit} className="flex flex-col">
+            <div className="p-8 md:p-12 flex-1">
 
               {/* Step 1 — Hospital Info */}
               {step === 1 && (
@@ -422,17 +422,26 @@ export default function RegisterPage() {
             </div>
 
             {/* Footer Navigation */}
-            <div className="mt-auto bg-slate-50 border-t border-slate-100 p-6 md:px-12 flex items-center justify-between">
+            <div className="bg-slate-50 border-t border-slate-200 px-8 md:px-12 py-5 flex items-center justify-between gap-4 flex-shrink-0">
               {step > 1 ? (
-                <Button type="button" variant="outline" onClick={handleBack} disabled={loading}>Back</Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="lg"
+                  onClick={handleBack}
+                  disabled={loading}
+                  className="min-w-[110px]"
+                >
+                  Back
+                </Button>
               ) : (
-                <div />
+                <div className="min-w-[110px]" />
               )}
               <Button
                 type="submit"
                 size="lg"
                 loading={loading}
-                className="bg-gradient-to-r from-emerald-600 to-emerald-500 border-0 shadow-md font-bold px-8"
+                className="bg-gradient-to-r from-emerald-600 to-emerald-500 border-0 shadow-md font-bold min-w-[160px]"
                 icon={step < 5 ? <ArrowRight size={16} /> : <CheckCircle2 size={16} />}
                 iconPosition="right"
               >
