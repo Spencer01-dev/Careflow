@@ -177,7 +177,7 @@ export default function ContactSalesPage() {
                     <div>
                       <h4 className="font-bold text-slate-900">Email Us</h4>
                       <p className="text-sm text-slate-500 mb-1">Our friendly team is here to help.</p>
-                      <a href="mailto:oscarmunene900@gmail.com" className="text-emerald-600 font-semibold text-sm">oscarmunene900@gmail.com</a>
+                      <a href="mailto:bluewhaletechnologies1@gmail.com" className="text-emerald-600 font-semibold text-sm">bluewhaletechnologies1@gmail.com</a>
                     </div>
                   </div>
                   <div className="flex gap-4">

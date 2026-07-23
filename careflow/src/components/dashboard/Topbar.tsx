@@ -16,7 +16,7 @@ export default function Topbar({ collapsed, onToggleSidebar }: TopbarProps) {
   const [showUserMenu, setShowUserMenu] = useState(false);
   const [userName, setUserName] = useState("Admin User");
   const [userRole, setUserRole] = useState("Administrator");
-  const [userEmail, setUserEmail] = useState("admin@careflow.com");
+  const [userEmail, setUserEmail] = useState("bluewhaletechnologies1@gmail.com");
   const [userInitials, setUserInitials] = useState("AU");
   const [globalSearch, setGlobalSearch] = useState("");
   const searchRef = useRef<HTMLInputElement>(null);

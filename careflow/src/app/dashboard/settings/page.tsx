@@ -66,7 +66,7 @@ function WorkspaceSettingsContent() {
     }
     // Load saved profile from localStorage
     setHospitalName(localStorage.getItem("careflow_hospital_name") || subInfo?.hospital_name || "CareFlow General Hospital");
-    setOfficialEmail(localStorage.getItem("careflow_user_email") || "admin@hospital.com");
+    setOfficialEmail(localStorage.getItem("careflow_user_email") || "bluewhaletechnologies1@gmail.com");
     setFacilityType(localStorage.getItem("careflow_facility_type") || "Private Multi-Specialty Hospital");
     setPhone(localStorage.getItem("careflow_phone") || "+254 700 000 000");
     fetchSub();
