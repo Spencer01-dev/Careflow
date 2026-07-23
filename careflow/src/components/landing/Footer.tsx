@@ -66,14 +66,18 @@ export default function Footer() {
               The complete Healthcare Operating System for modern hospitals — from single-site clinics to multi-branch health networks.
             </p>
             <div className="space-y-2">
-              <a href="mailto:hello@careflow.health" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
+              <a href="mailto:oscarmunene900@gmail.com" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
                 <Mail size={14} />
-                hello@careflow.health
+                oscarmunene900@gmail.com
               </a>
-              <a href="tel:+1234567890" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
+              <a href="tel:+254706656544" className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors">
                 <Phone size={14} />
-                +1 (234) 567-8900
+                +254 706 656 544
               </a>
+              <div className="flex items-center gap-2 text-sm text-slate-400">
+                <MapPin size={14} />
+                60400 Meru
+              </div>
             </div>
           </div>
 
@@ -97,7 +101,7 @@ export default function Footer() {
         {/* Bottom */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-slate-500">
-            © 2025 CareFlow Technologies. All rights reserved. Built with ❤️ for healthcare.
+            © 2025 CareFlow Technologies. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             {[Globe, MessageSquare].map((Icon, i) => (

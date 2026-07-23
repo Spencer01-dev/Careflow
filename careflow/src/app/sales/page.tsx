@@ -177,7 +177,7 @@ export default function ContactSalesPage() {
                     <div>
                       <h4 className="font-bold text-slate-900">Email Us</h4>
                       <p className="text-sm text-slate-500 mb-1">Our friendly team is here to help.</p>
-                      <a href="mailto:enterprise@careflow.com" className="text-emerald-600 font-semibold text-sm">enterprise@careflow.com</a>
+                      <a href="mailto:oscarmunene900@gmail.com" className="text-emerald-600 font-semibold text-sm">oscarmunene900@gmail.com</a>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -187,7 +187,7 @@ export default function ContactSalesPage() {
                     <div>
                       <h4 className="font-bold text-slate-900">Call Sales</h4>
                       <p className="text-sm text-slate-500 mb-1">Mon-Fri from 8am to 5pm GMT.</p>
-                      <a href="tel:+18001234567" className="text-emerald-600 font-semibold text-sm">+1 (800) 123-4567</a>
+                      <a href="tel:+254706656544" className="text-emerald-600 font-semibold text-sm">+254 706 656 544</a>
                     </div>
                   </div>
                   <div className="flex gap-4">
@@ -195,8 +195,8 @@ export default function ContactSalesPage() {
                       <MapPin className="text-violet-600" size={24} />
                     </div>
                     <div>
-                      <h4 className="font-bold text-slate-900">Global HQ</h4>
-                      <p className="text-sm text-slate-500">124 Healthcare Avenue, Tech District<br />London, UK SW1A 1AA</p>
+                      <h4 className="font-bold text-slate-900">Location</h4>
+                      <p className="text-sm text-slate-500">60400 Meru, Kenya</p>
                     </div>
                   </div>
                 </div>
