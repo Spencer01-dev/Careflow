@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { 
   Settings, Building, Shield, Zap, CheckCircle2, 
@@ -44,7 +44,7 @@ const PACKAGES = [
   },
 ];
 
-export default function WorkspaceSettingsPage() {
+function WorkspaceSettingsContent() {
   const searchParams = useSearchParams();
   const [subInfo, setSubInfo] = useState<SubscriptionInfo | null>(null);
   const [loading, setLoading] = useState(true);
@@ -328,5 +328,13 @@ export default function WorkspaceSettingsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function WorkspaceSettingsPage() {
+  return (
+    <Suspense fallback={<div className="flex-1 flex items-center justify-center"><div className="w-8 h-8 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin" /></div>}>
+      <WorkspaceSettingsContent />
+    </Suspense>
   );
 }
