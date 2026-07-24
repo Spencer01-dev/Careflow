@@ -16,6 +16,13 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     # Startup: create tables if they don't exist
     try:
+        from .config import settings
+        import os
+        db_url = settings.DATABASE_URL
+        # Log masked URL so we can debug without exposing credentials
+        masked = db_url[:20] + "..." if len(db_url) > 20 else db_url
+        logger.info(f"DATABASE_URL starts with: {masked}")
+        logger.info(f"DATABASE_URL env var present: {'DATABASE_URL' in os.environ}")
         models.Base.metadata.create_all(bind=engine)
         logger.info("Database tables created/verified successfully.")
     except Exception as e:
