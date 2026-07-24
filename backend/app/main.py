@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .database import engine, Base
@@ -6,14 +7,29 @@ from .auth import router as auth_router
 from .users import router as users_router
 from .subscription import router as subscription_router
 import uvicorn
+import logging
 
-# Create all tables in the database on startup
-models.Base.metadata.create_all(bind=engine)
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: create tables if they don't exist
+    try:
+        models.Base.metadata.create_all(bind=engine)
+        logger.info("Database tables created/verified successfully.")
+    except Exception as e:
+        logger.error(f"Failed to connect to the database on startup: {e}")
+        raise
+    yield
+    # Shutdown: nothing to clean up for sync engine
+
 
 app = FastAPI(
     title="CareFlow API",
     description="Enterprise Healthcare Operating System Backend API",
     version="1.0.0",
+    lifespan=lifespan,
 )
 
 # CORS — allow Next.js dev server
